@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Símbolo Integritii em turquesa</title>
+  
+  
+    <g fill="#01ABC4" transform="translate(76.000 64.000) scale(1.20000000)">
+      <circle cx="94" cy="62" r="31"/>
+      <circle cx="206" cy="62" r="31"/>
+      <path d="M61 135 C61 116 76 104 94 104 C112 104 127 116 127 135 L127 238 L61 238 Z"/>
+      <path d="M173 135 C173 116 188 104 206 104 C224 104 239 116 239 135 L239 238 L173 238 Z"/>
+      <path d="M25 260 C83 223 217 223 275 260 C276 262 275 266 271 266
+               C211 248 89 248 29 266 C25 266 24 262 25 260 Z"/>
+    </g>
+</svg>
