@@ -11,3 +11,5 @@ O site é publicado automaticamente em:
 ## Atualizações
 
 Cada atualização da branch `main` aciona o fluxo de publicação do GitHub Pages definido em `.github/workflows/pages.yml`.
+
+GitHub Pages ativado e publicação acionada em 11 de agosto de 2026.
