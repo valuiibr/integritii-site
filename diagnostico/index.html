@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnóstico de Governança para Igrejas | Integritii</title>
+  <meta name="description" content="Avalie gratuitamente a maturidade da governança, transparência, integridade e sustentabilidade da sua igreja.">
+  <meta name="theme-color" content="#203850">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.png">
+  <style>
+    @font-face{font-family:Sora;src:url('../assets/fonts/sora-regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:Sora;src:url('../assets/fonts/sora-medium.woff2') format('woff2');font-weight:500;font-display:swap}
+    @font-face{font-family:Sora;src:url('../assets/fonts/sora-bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    :root{--navy:#203850;--navy2:#142a40;--cyan:#3db6d6;--cyan2:#79d5e8;--ice:#edf1f2;--pale:#f7fafb;--white:#fff;--ink:#1d2d3d;--muted:#647585;--line:#dbe5e9;--green:#218b68;--amber:#c38723;--red:#b65353;--shadow:0 18px 55px rgba(23,48,70,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Sora,Segoe UI,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#f5f9fa 0,#fff 46%,#f4f8f9 100%)}
+    button,input,select{font:inherit}
+    button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid rgba(61,182,214,.4);outline-offset:3px}
+    .topbar{height:5px;background:linear-gradient(90deg,var(--cyan),var(--cyan2),var(--navy))}
+    header{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);padding:13px 5%;display:flex;justify-content:space-between;align-items:center;gap:24px;position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+    .brand{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--navy)}
+    .brand img{display:block;width:166px;height:auto}
+    .product{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-left:1px solid var(--line);padding-left:16px;color:var(--muted)}
+    .back{font-size:13px;color:var(--navy);text-decoration:none;font-weight:700}
+    .shell{max-width:1100px;margin:auto;padding:42px 22px 58px}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(132deg,var(--navy2),var(--navy) 62%,#28556b);color:#fff;border-radius:28px;padding:64px 58px;box-shadow:var(--shadow)}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.12)}
+    .hero:before{width:420px;height:420px;right:-150px;top:-220px}
+    .hero:after{width:260px;height:260px;right:65px;bottom:-190px}
+    .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--cyan2)}
+    .hero h1{font-size:clamp(36px,5vw,56px);line-height:1.08;margin:15px 0 20px;max-width:850px;letter-spacing:-.035em}
+    .hero p{font-size:17px;line-height:1.72;max-width:780px;color:#deedf2;margin:0}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0}
+    .badge{padding:9px 13px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);border-radius:999px;font-size:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;padding:15px 22px;font-weight:700;cursor:pointer;background:var(--cyan);color:#102f3d;text-decoration:none;transition:.18s transform,.18s box-shadow,.18s background}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 25px rgba(61,182,214,.22)}
+    .btn.secondary{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:none}
+    .btn.ghost{background:transparent;color:var(--navy);border:1px solid #b9cbd2}
+    .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 0}
+    .trust-item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px;display:flex;gap:13px;align-items:flex-start}
+    .trust-icon{width:35px;height:35px;flex:0 0 35px;border-radius:10px;display:grid;place-items:center;background:#e7f7fa;color:var(--navy);font-weight:700}
+    .trust-item b{font-size:13px;color:var(--navy);display:block;margin-bottom:5px}
+    .trust-item span{font-size:12px;line-height:1.5;color:var(--muted)}
+    .card{background:#fff;border:1px solid rgba(211,225,230,.9);border-radius:22px;padding:34px;margin-top:24px;box-shadow:0 9px 32px rgba(23,52,71,.07)}
+    .hidden{display:none!important}
+    .quiz-head{display:flex;justify-content:space-between;gap:18px;font-size:12px;color:var(--muted)}
+    .progress{height:8px;background:#e7eef1;border-radius:99px;overflow:hidden;margin:15px 0 28px}
+    .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),#6dd2e5);transition:width .3s}
+    .dimension{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#277d96;font-weight:700}
+    .question{font-size:clamp(22px,3vw,29px);font-weight:700;line-height:1.38;letter-spacing:-.018em;margin:13px 0 24px;max-width:900px}
+    .options{display:grid;gap:10px}
+    .option{width:100%;text-align:left;border:1px solid var(--line);padding:15px 17px;border-radius:12px;cursor:pointer;transition:.15s;background:#fff;color:var(--ink);display:flex;gap:13px;align-items:center}
+    .option:hover,.option.active{border-color:var(--cyan);background:#eefafb}
+    .option-number{width:29px;height:29px;flex:0 0 29px;border-radius:8px;display:grid;place-items:center;background:var(--ice);font-weight:700;color:var(--navy)}
+    .option.active .option-number{background:var(--cyan);color:#0f3341}
+    .nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+    .gate-intro{max-width:760px}
+    .gate-intro h2,.result-title{font-size:clamp(27px,4vw,38px);line-height:1.2;color:var(--navy);margin:10px 0 12px}
+    .gate-intro p{color:var(--muted);line-height:1.65}
+    .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:24px}
+    .field label{display:block;font-size:12px;font-weight:700;margin:0 0 7px;color:#526675}
+    input,select{width:100%;padding:14px;border:1px solid #cedce2;border-radius:10px;font-size:14px;background:#fff;color:var(--ink)}
+    .consent{display:flex;gap:10px;align-items:flex-start;margin:19px 0 16px;font-size:11px;line-height:1.55;color:var(--muted)}
+    .consent input{width:auto;margin-top:3px}
+    .error{color:var(--red);font-size:12px;margin-top:10px;min-height:18px}
+    .result-hero{background:linear-gradient(135deg,#fff,#f2f8f9)}
+    .scoregrid{display:grid;grid-template-columns:245px 1fr;gap:36px;align-items:center;margin-top:24px}
+    .ring{--score:0;width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--cyan) calc(var(--score)*1%),#e3ecef 0);position:relative;box-shadow:inset 0 0 0 1px rgba(31,56,80,.04)}
+    .ring:after{content:"";position:absolute;width:172px;height:172px;border-radius:50%;background:#fff}
+    .ringtext{z-index:1;text-align:center}.ringtext strong{font-size:50px;color:var(--navy)}.ringtext span{display:block;font-size:11px;color:var(--muted)}
+    .level{font-size:30px;color:var(--navy);margin:0 0 8px}
+    .summary{color:var(--muted);line-height:1.68;margin:0 0 22px}
+    .bars{display:grid;gap:13px}
+    .barhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600}
+    .track{height:9px;background:#e5edef;border-radius:99px;overflow:hidden;margin-top:6px}.fill{height:100%;background:linear-gradient(90deg,#2d8ca5,var(--cyan));border-radius:99px}
+    .insights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .insight{padding:20px;border-radius:15px;background:var(--ice);border:1px solid #dfebee}
+    .insight .tag{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#34798d;font-weight:700}.insight b{display:block;margin:8px 0;color:var(--navy);font-size:14px}.insight span{font-size:12px;line-height:1.55;color:var(--muted)}
+    .action-list{display:grid;gap:12px;counter-reset:action;margin-top:20px}
+    .action{counter-increment:action;border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px 58px;position:relative}
+    .action:before{content:counter(action);position:absolute;left:17px;top:17px;width:28px;height:28px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+    .action b{display:block;color:var(--navy);font-size:13px;margin-bottom:5px}.action span{font-size:12px;color:var(--muted);line-height:1.55}
+    .guide{background:var(--navy);color:#fff;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.guide h2{margin:9px 0 10px;font-size:27px}.guide p{color:#d9e8ed;line-height:1.65;font-size:13px;margin:0}
+    .notice{font-size:11px;color:#788895;line-height:1.6;margin:22px 4px 0}
+    footer{background:var(--navy2);color:#c9d8df;padding:36px 5%;display:flex;justify-content:center;text-align:center;font-size:11px;line-height:1.6}
+    @media(max-width:780px){header{padding:11px 18px}.brand img{width:130px}.product{display:none}.back{font-size:11px}.shell{padding:25px 15px 44px}.hero{padding:40px 24px;border-radius:20px}.hero p{font-size:15px}.trust,.formgrid,.scoregrid,.insights{grid-template-columns:1fr}.trust{gap:10px}.card{padding:24px 19px;border-radius:18px}.ring{margin:auto}.nav .btn{padding:13px 15px}.guide{grid-template-columns:1fr}.formgrid .full{grid-column:auto!important}}
+    @media print{header,.topbar,.hero,.trust,.nav,.guide,.cta-card,footer{display:none!important}.shell{padding:0}.card{box-shadow:none;break-inside:avoid}.result-title{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="topbar"></div>
+  <header>
+    <a class="brand" href="https://www.integritii.com.br" aria-label="Integritii — página inicial">
+      <img src="../assets/images/logo-integritii-azul.png" alt="Integritii">
+      <span class="product">Diagnóstico de Governança</span>
+    </a>
+    <a class="back" href="https://www.integritii.com.br">Voltar ao site</a>
+  </header>
+
+  <main class="shell">
+    <section id="intro" class="hero">
+      <div class="eyebrow">Autodiagnóstico preliminar gratuito</div>
+      <h1>Como está a governança da sua igreja?</h1>
+      <p>Responda a uma avaliação objetiva e conheça o nível de maturidade da sua igreja em liderança, transparência, integridade, finanças, riscos e sustentabilidade da missão.</p>
+      <div class="badges">
+        <span class="badge">6 dimensões</span><span class="badge">24 questões</span><span class="badge">Resultado personalizado</span><span class="badge">Plano inicial de prioridades</span>
+      </div>
+      <button class="btn" type="button" onclick="startDiagnostic()">Iniciar diagnóstico <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section id="trust" class="trust" aria-label="Características do diagnóstico">
+      <div class="trust-item"><div class="trust-icon">01</div><div><b>Preenchimento orientado</b><span>Escala simples, com respostas que refletem o estágio real das práticas.</span></div></div>
+      <div class="trust-item"><div class="trust-icon">02</div><div><b>Leitura por dimensão</b><span>Nota geral e visão separada das áreas que sustentam a boa governança.</span></div></div>
+      <div class="trust-item"><div class="trust-icon">03</div><div><b>Uso responsável</b><span>Ferramenta educativa; não substitui auditoria, certificação ou parecer técnico.</span></div></div>
+    </section>
+
+    <section id="quiz" class="card hidden" aria-live="polite">
+      <div class="quiz-head"><span id="qcount"></span><span id="pct"></span></div>
+      <div class="progress" aria-hidden="true"><span id="prog"></span></div>
+      <div id="dimension" class="dimension"></div>
+      <div id="question" class="question"></div>
+      <div id="options" class="options" role="radiogroup" aria-label="Opções de resposta"></div>
+      <div class="nav"><button class="btn secondary" type="button" onclick="previousQuestion()">← Voltar</button><button id="next" class="btn" type="button" onclick="nextQuestion()">Continuar →</button></div>
+    </section>
+
+    <section id="gate" class="card hidden">
+      <div class="gate-intro">
+        <div class="dimension">Seu resultado foi calculado</div>
+        <h2>Identifique sua igreja para acessar a análise completa</h2>
+        <p>Essas informações contextualizam o diagnóstico e permitem que o Integritii apresente conteúdos e orientações relacionados à governança eclesiástica.</p>
+      </div>
+      <div class="formgrid">
+        <div class="field"><label for="name">Nome *</label><input id="name" autocomplete="name" required></div>
+        <div class="field"><label for="church">Igreja ou organização religiosa *</label><input id="church" autocomplete="organization" required></div>
+        <div class="field"><label for="role">Função ou responsabilidade *</label><select id="role" required><option value="">Selecione</option><option>Pastor(a) ou líder principal</option><option>Membro da diretoria</option><option>Conselheiro(a)</option><option>Tesoureiro(a) ou responsável financeiro</option><option>Líder de ministério</option><option>Contador(a), auditor(a) ou assessor(a)</option><option>Outro</option></select></div>
+        <div class="field"><label for="phone">WhatsApp *</label><input id="phone" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
+        <div class="field"><label for="email">E-mail *</label><input id="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="city">Cidade e estado *</label><input id="city" placeholder="Ex.: Piracicaba/SP" required></div>
+        <div class="field full" style="grid-column:1/-1"><label for="site">Site ou rede social da igreja</label><input id="site" inputmode="url" placeholder="www.suaigreja.org.br"></div>
+      </div>
+      <label class="consent"><input id="consent" type="checkbox"> <span>Concordo com o tratamento dos dados informados para entrega deste diagnóstico e contato relacionado ao Integritii, nos termos da legislação aplicável. Compreendo que esta avaliação é preliminar e baseada nas respostas fornecidas.</span></label>
+      <button class="btn" type="button" onclick="unlockResult()">Ver resultado completo →</button>
+      <div id="formerror" class="error" role="alert"></div>
+    </section>
+
+    <section id="result" class="hidden">
+      <div class="card result-hero">
+        <div class="dimension">Índice Integritii de Maturidade em Governança Eclesiástica</div>
+        <h2 id="hello" class="result-title"></h2>
+        <div class="scoregrid">
+          <div class="ring" id="ring"><div class="ringtext"><strong id="score"></strong><span>de 100 pontos</span></div></div>
+          <div><h3 id="level" class="level"></h3><p id="summary" class="summary"></p><div id="bars" class="bars"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dimension">Leitura executiva</div><h2>O que o resultado indica</h2>
+        <div class="insights">
+          <div class="insight"><div class="tag">Maior maturidade</div><b id="strongTitle"></b><span id="strong"></span></div>
+          <div class="insight"><div class="tag">Ponto de atenção</div><b id="weakTitle"></b><span id="weak"></span></div>
+          <div class="insight"><div class="tag">Próximo passo</div><b>Plano de evolução</b><span id="priority"></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dimension">Plano inicial</div><h2>Três prioridades recomendadas</h2>
+        <div id="actions" class="action-list"></div>
+      </div>
+
+      <div class="card guide">
+        <div><div class="eyebrow">Conteúdo Integritii</div><h2>Guia Inicial de Governança para Igrejas</h2><p>Material prático com fundamentos de liderança responsável, transparência, integridade, controles, prestação de contas e proteção da missão.</p></div>
+        <a class="btn" href="../assets/downloads/Kit-Inicial-Integritii-Igrejas.pdf" download>Baixar guia gratuito ↓</a>
+      </div>
+
+      <div class="card cta-card">
+        <div class="dimension">Aprofundamento</div><h2>Quer transformar o diagnóstico em um plano de ação?</h2>
+        <p class="summary">O Integritii pode apoiar a liderança na leitura das causas, riscos e prioridades, respeitando o porte, a tradição e a realidade institucional da igreja.</p>
+        <a class="btn" href="https://wa.me/5519920041267?text=Ol%C3%A1%2C%20conclu%C3%AD%20o%20Diagn%C3%B3stico%20Integritii%20e%20gostaria%20de%20conhecer%20os%20pr%C3%B3ximos%20passos." target="_blank" rel="noopener">Falar sobre o diagnóstico →</a>
+        <button class="btn ghost" style="margin-left:8px" type="button" onclick="window.print()">Salvar resultado em PDF</button>
+      </div>
+
+      <p class="notice">O Índice Integritii de Maturidade em Governança Eclesiástica é um instrumento educativo de autodiagnóstico, calculado exclusivamente a partir das respostas do participante. Não representa auditoria, asseguração, certificação, acreditação, selo de conformidade ou parecer jurídico, contábil ou financeiro. A ausência de determinada prática não implica, isoladamente, irregularidade legal.</p>
+    </section>
+  </main>
+
+  <footer>Integritii · Integridade que protege a missão<br>Diagnóstico preliminar de governança para igrejas</footer>
+
+  <script>
+    const dimensions={
+      "Liderança e Responsabilidades":20,
+      "Transparência e Prestação de Contas":20,
+      "Integridade, Ética e Conformidade":15,
+      "Gestão Financeira e Controles":20,
+      "Riscos, Continuidade e Proteção":10,
+      "Missão, Planejamento e Sustentabilidade":15
+    };
+
+    const questions=[
+      ["Liderança e Responsabilidades","As atribuições da liderança pastoral, diretoria, conselhos e demais responsáveis estão formalmente definidas?"],
+      ["Liderança e Responsabilidades","Decisões relevantes são submetidas às instâncias competentes, registradas e acompanhadas?"],
+      ["Liderança e Responsabilidades","Existem critérios claros para nomeação, mandato, substituição e avaliação de dirigentes e responsáveis?"],
+      ["Liderança e Responsabilidades","A liderança recebe informações confiáveis e periódicas para exercer supervisão e tomar decisões?"],
+      ["Transparência e Prestação de Contas","A igreja apresenta periodicamente receitas, despesas, patrimônio e aplicação dos recursos aos responsáveis e membros?"],
+      ["Transparência e Prestação de Contas","Relatórios financeiros e ministeriais são compreensíveis, consistentes e acessíveis às instâncias adequadas?"],
+      ["Transparência e Prestação de Contas","Projetos, campanhas e ofertas com finalidade específica possuem acompanhamento e prestação de contas próprios?"],
+      ["Transparência e Prestação de Contas","A igreja comunica resultados, atividades e impacto da missão de forma objetiva e verificável?"],
+      ["Integridade, Ética e Conformidade","A igreja possui diretrizes de ética e conduta aplicáveis a líderes, empregados, voluntários e fornecedores?"],
+      ["Integridade, Ética e Conformidade","Conflitos de interesses, transações com partes relacionadas e benefícios a dirigentes são declarados e tratados?"],
+      ["Integridade, Ética e Conformidade","Existe um meio seguro e responsável para relatar dúvidas, desvios, abusos ou irregularidades?"],
+      ["Integridade, Ética e Conformidade","Obrigações estatutárias, trabalhistas, fiscais, contábeis e de proteção de dados são acompanhadas com responsáveis definidos?"],
+      ["Gestão Financeira e Controles","Orçamento, fluxo de caixa e posição financeira são preparados e comparados regularmente com o realizado?"],
+      ["Gestão Financeira e Controles","Pagamentos, recebimentos, conciliações e movimentações bancárias seguem procedimentos e aprovações definidos?"],
+      ["Gestão Financeira e Controles","Funções incompatíveis estão segregadas e atividades críticas passam por revisão independente?"],
+      ["Gestão Financeira e Controles","Demonstrações contábeis e relatórios financeiros são revisados pelas instâncias de supervisão e, quando aplicável, por profissional independente?"],
+      ["Riscos, Continuidade e Proteção","Os principais riscos financeiros, operacionais, legais, reputacionais e ministeriais são identificados e acompanhados?"],
+      ["Riscos, Continuidade e Proteção","Existem planos para continuidade das atividades, sucessão da liderança e resposta a situações de crise?"],
+      ["Riscos, Continuidade e Proteção","A igreja adota medidas de proteção de crianças, adolescentes e pessoas vulneráveis em suas atividades?"],
+      ["Riscos, Continuidade e Proteção","Documentos, dados, patrimônio e acessos digitais possuem proteção, responsáveis e rotinas de contingência?"],
+      ["Missão, Planejamento e Sustentabilidade","A igreja possui missão, prioridades e objetivos ministeriais claramente definidos e comunicados?"],
+      ["Missão, Planejamento e Sustentabilidade","O planejamento integra atividades ministeriais, capacidade financeira, pessoas e infraestrutura disponíveis?"],
+      ["Missão, Planejamento e Sustentabilidade","Indicadores financeiros e ministeriais são utilizados para acompanhar resultados e ajustar decisões?"],
+      ["Missão, Planejamento e Sustentabilidade","A captação, as reservas e o uso de recursos são conduzidos de modo a preservar a continuidade e a fidelidade à missão?" ]
+    ];
+
+    const labels=[
+      "Não existe ou não é realizado",
+      "Existe de maneira informal ou incipiente",
+      "É realizado parcialmente ou sem regularidade",
+      "Está implementado e é realizado periodicamente",
+      "Está implementado, monitorado e orienta decisões"
+    ];
+
+    const recommendations={
+      "Liderança e Responsabilidades":"Formalizar atribuições, alçadas, reuniões e registros de decisão da liderança e dos órgãos de supervisão.",
+      "Transparência e Prestação de Contas":"Estabelecer uma rotina clara de relatórios financeiros, ministeriais e prestações de contas aos públicos adequados.",
+      "Integridade, Ética e Conformidade":"Implantar diretrizes de conduta, conflitos de interesses, canal de relato e calendário de obrigações.",
+      "Gestão Financeira e Controles":"Organizar orçamento, fluxo de caixa, conciliações, aprovações, segregação de funções e revisão dos relatórios.",
+      "Riscos, Continuidade e Proteção":"Mapear riscos prioritários e instituir planos de continuidade, proteção de vulneráveis, dados e patrimônio.",
+      "Missão, Planejamento e Sustentabilidade":"Conectar missão, planejamento, indicadores, recursos e reservas em um ciclo periódico de gestão."
+    };
+
+    let current=0;
+    let answers=Array(questions.length).fill(null);
+    const $=id=>document.getElementById(id);
+
+    function startDiagnostic(){
+      $("intro").classList.add("hidden");
+      $("trust").classList.add("hidden");
+      $("quiz").classList.remove("hidden");
+      renderQuestion();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function renderQuestion(){
+      const completed=answers.filter(value=>value!==null).length;
+      const percent=Math.round((completed/questions.length)*100);
+      $("qcount").textContent=`Questão ${current+1} de ${questions.length}`;
+      $("pct").textContent=`${percent}% concluído`;
+      $("prog").style.width=`${percent}%`;
+      $("dimension").textContent=questions[current][0];
+      $("question").textContent=questions[current][1];
+      $("options").innerHTML=labels.map((label,index)=>`<button type="button" role="radio" aria-checked="${answers[current]===index}" class="option ${answers[current]===index?'active':''}" onclick="chooseAnswer(${index})"><span class="option-number">${index}</span><span>${label}</span></button>`).join("");
+      $("next").textContent=current===questions.length-1?"Concluir diagnóstico →":"Continuar →";
+    }
+
+    function chooseAnswer(value){answers[current]=value;renderQuestion()}
+
+    function nextQuestion(){
+      if(answers[current]===null){alert("Selecione a opção que melhor representa a realidade atual da igreja.");return}
+      if(current<questions.length-1){current++;renderQuestion();$("quiz").scrollIntoView({behavior:"smooth",block:"start"})}
+      else{$("quiz").classList.add("hidden");$("gate").classList.remove("hidden");$("gate").scrollIntoView({behavior:"smooth",block:"start"})}
+    }
+
+    function previousQuestion(){if(current>0){current--;renderQuestion()}}
+
+    function calculate(){
+      const scores={};
+      Object.keys(dimensions).forEach(dimension=>{
+        const indexes=questions.map((item,index)=>item[0]===dimension?index:-1).filter(index=>index>=0);
+        scores[dimension]=Math.round(indexes.reduce((sum,index)=>sum+answers[index],0)/(indexes.length*4)*100);
+      });
+      const total=Math.round(Object.entries(scores).reduce((sum,[dimension,value])=>sum+value*dimensions[dimension]/100,0));
+      return [total,scores];
+    }
+
+    function validEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
+
+    function unlockResult(){
+      const required=["name","church","role","phone","email","city"];
+      const missing=required.some(id=>!$(id).value.trim());
+      if(missing||!validEmail($("email").value.trim())||!$("consent").checked){
+        $("formerror").textContent="Preencha os campos obrigatórios, informe um e-mail válido e confirme o consentimento para prosseguir.";return;
+      }
+      $("formerror").textContent="";
+      const [score,scores]=calculate();
+      const record={createdAt:new Date().toISOString(),name:$("name").value.trim(),church:$("church").value.trim(),role:$("role").value,phone:$("phone").value.trim(),email:$("email").value.trim(),city:$("city").value.trim(),site:$("site").value.trim(),score,scores};
+      try{localStorage.setItem("integritii-diagnostico-atual",JSON.stringify(record))}catch(error){}
+      $("gate").classList.add("hidden");
+      $("result").classList.remove("hidden");
+      showResult(score,scores);
+      $("result").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    function showResult(score,scores){
+      $("score").textContent=score;
+      $("ring").style.setProperty("--score",score);
+      $("hello").textContent=`${$("name").value}, este é o resultado de ${$("church").value}.`;
+      let level,summary;
+      if(score<=20){level="Governança vulnerável";summary="Há baixa formalização em práticas essenciais. A prioridade é criar fundamentos mínimos de responsabilidade, controle e prestação de contas para reduzir exposição da igreja e de sua liderança."}
+      else if(score<=40){level="Governança inicial";summary="A igreja possui algumas práticas, mas elas ainda dependem de pessoas, costumes e rotinas informais. É necessário transformar boas intenções em procedimentos consistentes."}
+      else if(score<=60){level="Governança em estruturação";summary="Já existem mecanismos relevantes, porém com lacunas de integração, regularidade, documentação e monitoramento. Um plano de evolução pode consolidar o sistema de governança."}
+      else if(score<=80){level="Governança estruturada";summary="A igreja demonstra boas práticas em diferentes áreas. O avanço depende de aperfeiçoar supervisão, indicadores, transparência e melhoria contínua."}
+      else{level="Governança madura";summary="A igreja demonstra práticas consistentes, monitoradas e integradas à missão. O foco passa a ser preservar a cultura de integridade, avaliar efetividade e compartilhar aprendizados."}
+      $("level").textContent=level;
+      $("summary").textContent=summary;
+      $("bars").innerHTML=Object.entries(scores).map(([dimension,value])=>`<div><div class="barhead"><span>${dimension}</span><span>${value}/100</span></div><div class="track"><div class="fill" style="width:${value}%"></div></div></div>`).join("");
+      const ordered=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+      const strongest=ordered[0];
+      const weakest=ordered[ordered.length-1];
+      $("strongTitle").textContent=strongest[0];
+      $("strong").textContent=`Pontuação ${strongest[1]}/100. Preserve as práticas existentes e verifique se elas estão documentadas e monitoradas.`;
+      $("weakTitle").textContent=weakest[0];
+      $("weak").textContent=`Pontuação ${weakest[1]}/100. Esta dimensão merece atenção prioritária da liderança.`;
+      $("priority").textContent=`Defina responsáveis, prazo e evidências de execução para fortalecer ${weakest[0].toLowerCase()}.`;
+      const priorities=ordered.slice(-3).reverse();
+      $("actions").innerHTML=priorities.map(([dimension,value])=>`<div class="action"><b>${dimension} · ${value}/100</b><span>${recommendations[dimension]}</span></div>`).join("");
+    }
+  </script>
+</body>
+</html>
