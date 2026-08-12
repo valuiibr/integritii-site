@@ -1859,13 +1859,18 @@ svg {
   }
 
   .people-symbol::before {
-    width: 280px;
-    height: 280px;
+    top: 24px;
+    right: 24px;
+    width: 76px;
+    height: 5px;
   }
 
   .people-symbol::after {
-    width: 350px;
-    height: 350px;
+    bottom: 20px;
+    left: 24px;
+    width: auto;
+    height: auto;
+    font-size: 0.55rem;
   }
 
   .people-symbol img {
