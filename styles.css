@@ -1392,6 +1392,47 @@ svg {
   height: 700px;
 }
 
+/* Coordenação Geral */
+
+.coordination-section {
+  padding-block: 76px;
+  border-top: 1px solid rgba(4, 43, 99, 0.08);
+  background: var(--surface-soft);
+}
+
+.coordination-content {
+  max-width: 900px;
+  text-align: center;
+}
+
+.coordination-content .eyebrow {
+  justify-content: center;
+}
+
+.coordination-content h2 {
+  margin-bottom: 18px;
+  color: var(--navy-900);
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.coordination-name {
+  margin-bottom: 12px;
+  color: var(--navy-900);
+  font-family: "Sora", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.coordination-bio {
+  max-width: 840px;
+  margin: 0 auto;
+  color: var(--ink-700);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
 /* Footer */
 
 .site-footer {
