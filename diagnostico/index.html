@@ -125,25 +125,35 @@
       <div class="nav"><button class="btn secondary" type="button" onclick="previousQuestion()">← Voltar</button><button id="next" class="btn" type="button" onclick="nextQuestion()">Continuar →</button></div>
     </section>
 
-    <section id="gate" class="card hidden">
+    <form id="gate" class="card hidden" action="https://formsubmit.co/contato@integritii.com.br" method="POST">
+      <input type="hidden" name="_subject" value="Novo Diagnóstico Integritii — Governança de Igrejas">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="http://www.integritii.com.br/diagnostico/?resultado=1">
+      <input type="hidden" name="_url" value="http://www.integritii.com.br/diagnostico/">
+      <input type="hidden" id="autoresponse" name="_autoresponse" value="">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+      <input type="hidden" id="submittedAt" name="Data e hora" value="">
+      <input type="hidden" id="submittedScore" name="Índice geral" value="">
+      <input type="hidden" id="submittedLevel" name="Nível de maturidade" value="">
+      <input type="hidden" id="submittedDimensions" name="Resultados por dimensão" value="">
       <div class="gate-intro">
         <div class="dimension">Seu resultado foi calculado</div>
         <h2>Identifique sua igreja para acessar a análise completa</h2>
         <p>Essas informações contextualizam o diagnóstico e permitem que o Integritii apresente conteúdos e orientações relacionados à governança eclesiástica.</p>
       </div>
       <div class="formgrid">
-        <div class="field"><label for="name">Nome *</label><input id="name" autocomplete="name" required></div>
-        <div class="field"><label for="church">Igreja ou organização religiosa *</label><input id="church" autocomplete="organization" required></div>
-        <div class="field"><label for="role">Função ou responsabilidade *</label><select id="role" required><option value="">Selecione</option><option>Pastor(a) ou líder principal</option><option>Membro da diretoria</option><option>Conselheiro(a)</option><option>Tesoureiro(a) ou responsável financeiro</option><option>Líder de ministério</option><option>Contador(a), auditor(a) ou assessor(a)</option><option>Outro</option></select></div>
-        <div class="field"><label for="phone">WhatsApp *</label><input id="phone" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
-        <div class="field"><label for="email">E-mail *</label><input id="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="city">Cidade e estado *</label><input id="city" placeholder="Ex.: Piracicaba/SP" required></div>
-        <div class="field full" style="grid-column:1/-1"><label for="site">Site ou rede social da igreja</label><input id="site" inputmode="url" placeholder="www.suaigreja.org.br"></div>
+        <div class="field"><label for="name">Nome *</label><input id="name" name="Nome" autocomplete="name" required></div>
+        <div class="field"><label for="church">Igreja ou organização religiosa *</label><input id="church" name="Igreja" autocomplete="organization" required></div>
+        <div class="field"><label for="role">Função ou responsabilidade *</label><select id="role" name="Função" required><option value="">Selecione</option><option>Pastor(a) ou líder principal</option><option>Membro da diretoria</option><option>Conselheiro(a)</option><option>Tesoureiro(a) ou responsável financeiro</option><option>Líder de ministério</option><option>Contador(a), auditor(a) ou assessor(a)</option><option>Outro</option></select></div>
+        <div class="field"><label for="phone">WhatsApp *</label><input id="phone" name="WhatsApp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
+        <div class="field"><label for="email">E-mail *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="city">Cidade e estado *</label><input id="city" name="Cidade e estado" placeholder="Ex.: Piracicaba/SP" required></div>
+        <div class="field full" style="grid-column:1/-1"><label for="site">Site ou rede social da igreja</label><input id="site" name="Site ou rede social" inputmode="url" placeholder="www.suaigreja.org.br"></div>
       </div>
       <label class="consent"><input id="consent" type="checkbox"> <span>Concordo com o tratamento dos dados informados para entrega deste diagnóstico e contato relacionado ao Integritii, nos termos da legislação aplicável. Compreendo que esta avaliação é preliminar e baseada nas respostas fornecidas.</span></label>
-      <button class="btn" type="button" onclick="unlockResult()">Ver resultado completo →</button>
+      <button class="btn" id="submitResult" type="button" onclick="unlockResult()">Receber resultado e e-book →</button>
       <div id="formerror" class="error" role="alert"></div>
-    </section>
+    </form>
 
     <section id="result" class="hidden">
       <div class="card result-hero">
@@ -287,6 +297,14 @@
 
     function validEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
 
+    function maturity(score){
+      if(score<=20)return ["Governança vulnerável","Há baixa formalização em práticas essenciais. A prioridade é criar fundamentos mínimos de responsabilidade, controle e prestação de contas para reduzir exposição da igreja e de sua liderança."];
+      if(score<=40)return ["Governança inicial","A igreja possui algumas práticas, mas elas ainda dependem de pessoas, costumes e rotinas informais. É necessário transformar boas intenções em procedimentos consistentes."];
+      if(score<=60)return ["Governança em estruturação","Já existem mecanismos relevantes, porém com lacunas de integração, regularidade, documentação e monitoramento. Um plano de evolução pode consolidar o sistema de governança."];
+      if(score<=80)return ["Governança estruturada","A igreja demonstra boas práticas em diferentes áreas. O avanço depende de aperfeiçoar supervisão, indicadores, transparência e melhoria contínua."];
+      return ["Governança madura","A igreja demonstra práticas consistentes, monitoradas e integradas à missão. O foco passa a ser preservar a cultura de integridade, avaliar efetividade e compartilhar aprendizados."];
+    }
+
     function unlockResult(){
       const required=["name","church","role","phone","email","city"];
       const missing=required.some(id=>!$(id).value.trim());
@@ -295,24 +313,24 @@
       }
       $("formerror").textContent="";
       const [score,scores]=calculate();
-      const record={createdAt:new Date().toISOString(),name:$("name").value.trim(),church:$("church").value.trim(),role:$("role").value,phone:$("phone").value.trim(),email:$("email").value.trim(),city:$("city").value.trim(),site:$("site").value.trim(),score,scores};
+      const [level]=maturity(score);
+      const record={createdAt:new Date().toISOString(),name:$("name").value.trim(),church:$("church").value.trim(),role:$("role").value,phone:$("phone").value.trim(),email:$("email").value.trim(),city:$("city").value.trim(),site:$("site").value.trim(),score,level,scores};
       try{localStorage.setItem("integritii-diagnostico-atual",JSON.stringify(record))}catch(error){}
-      $("gate").classList.add("hidden");
-      $("result").classList.remove("hidden");
-      showResult(score,scores);
-      $("result").scrollIntoView({behavior:"smooth",block:"start"});
+      $("submittedAt").value=new Date().toLocaleString("pt-BR");
+      $("submittedScore").value=`${score}/100`;
+      $("submittedLevel").value=level;
+      $("submittedDimensions").value=Object.entries(scores).map(([dimension,value])=>`${dimension}: ${value}/100`).join(" | ");
+      $("autoresponse").value=`Olá, ${record.name}. Recebemos o Diagnóstico Integritii de ${record.church}. O resultado geral foi ${score}/100 — ${level}. Acesse novamente seu resultado neste dispositivo em http://www.integritii.com.br/diagnostico/?resultado=1 e baixe gratuitamente o Guia Inicial de Governança para Igrejas em http://www.integritii.com.br/assets/downloads/Kit_Inicial_Integritii_para_Igrejas.pdf. Esta é uma avaliação preliminar baseada nas respostas informadas e não constitui auditoria ou certificação. Integritii — integridade que protege a missão.`;
+      $("submitResult").disabled=true;
+      $("submitResult").textContent="Enviando resultado…";
+      $("gate").submit();
     }
 
     function showResult(score,scores){
       $("score").textContent=score;
       $("ring").style.setProperty("--score",score);
       $("hello").textContent=`${$("name").value}, este é o resultado de ${$("church").value}.`;
-      let level,summary;
-      if(score<=20){level="Governança vulnerável";summary="Há baixa formalização em práticas essenciais. A prioridade é criar fundamentos mínimos de responsabilidade, controle e prestação de contas para reduzir exposição da igreja e de sua liderança."}
-      else if(score<=40){level="Governança inicial";summary="A igreja possui algumas práticas, mas elas ainda dependem de pessoas, costumes e rotinas informais. É necessário transformar boas intenções em procedimentos consistentes."}
-      else if(score<=60){level="Governança em estruturação";summary="Já existem mecanismos relevantes, porém com lacunas de integração, regularidade, documentação e monitoramento. Um plano de evolução pode consolidar o sistema de governança."}
-      else if(score<=80){level="Governança estruturada";summary="A igreja demonstra boas práticas em diferentes áreas. O avanço depende de aperfeiçoar supervisão, indicadores, transparência e melhoria contínua."}
-      else{level="Governança madura";summary="A igreja demonstra práticas consistentes, monitoradas e integradas à missão. O foco passa a ser preservar a cultura de integridade, avaliar efetividade e compartilhar aprendizados."}
+      const [level,summary]=maturity(score);
       $("level").textContent=level;
       $("summary").textContent=summary;
       $("bars").innerHTML=Object.entries(scores).map(([dimension,value])=>`<div><div class="barhead"><span>${dimension}</span><span>${value}/100</span></div><div class="track"><div class="fill" style="width:${value}%"></div></div></div>`).join("");
@@ -327,6 +345,18 @@
       const priorities=ordered.slice(-3).reverse();
       $("actions").innerHTML=priorities.map(([dimension,value])=>`<div class="action"><b>${dimension} · ${value}/100</b><span>${recommendations[dimension]}</span></div>`).join("");
     }
+
+    function restoreSubmittedResult(){
+      if(!new URLSearchParams(window.location.search).has("resultado"))return;
+      let record;
+      try{record=JSON.parse(localStorage.getItem("integritii-diagnostico-atual")||"null")}catch(error){record=null}
+      if(!record)return;
+      ["name","church","role","phone","email","city","site"].forEach(id=>{if($(id)&&record[id]!==undefined)$(id).value=record[id]});
+      $("intro").classList.add("hidden");$("trust").classList.add("hidden");$("quiz").classList.add("hidden");$("gate").classList.add("hidden");$("result").classList.remove("hidden");
+      showResult(record.score,record.scores);
+    }
+
+    document.addEventListener("DOMContentLoaded",restoreSubmittedResult);
   </script>
 </body>
 </html>
