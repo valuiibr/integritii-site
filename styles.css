@@ -872,56 +872,23 @@ svg {
 
 .people-symbol {
   position: relative;
-  display: grid;
+  display: block;
   min-height: 520px;
+  margin: 0;
   overflow: hidden;
-  place-items: center;
   border: 1px solid rgba(1, 171, 196, 0.24);
   border-left: 8px solid var(--turquoise-400);
   border-radius: 34px 8px 34px 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(223, 248, 251, 0.78)),
-    var(--sky-50);
+  background: var(--sky-50);
   box-shadow: 0 28px 65px rgba(4, 43, 99, 0.1);
 }
 
-.people-symbol::before {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 92px;
-  height: 6px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--turquoise-400), var(--navy-900));
-  content: "";
-}
-
-.people-symbol::after {
-  position: absolute;
-  bottom: 28px;
-  left: 32px;
-  color: rgba(4, 43, 99, 0.58);
-  content: "PESSOAS · CONDUTA · CONFIANÇA";
-  font-family: "Sora", sans-serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
 .people-symbol img {
-  position: relative;
-  z-index: 2;
-  width: 220px;
-  filter: drop-shadow(0 26px 28px rgba(1, 142, 167, 0.18));
-}
-
-.symbol-glow {
-  position: absolute;
-  width: 72%;
-  height: 130px;
-  border-radius: 18px;
-  background: linear-gradient(90deg, rgba(32, 191, 211, 0.08), rgba(32, 191, 211, 0.24), rgba(32, 191, 211, 0.08));
-  filter: blur(30px);
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
 }
 
 .check-list {
@@ -1280,26 +1247,23 @@ svg {
 
 .blog-feature-symbol {
   position: relative;
-  display: grid;
+  display: block;
   min-height: 360px;
   overflow: hidden;
-  place-items: center;
-  background: linear-gradient(145deg, rgba(223, 248, 251, 0.9), #fff);
-}
-
-.blog-feature-symbol::before {
-  position: absolute;
-  width: 210px;
-  height: 210px;
-  border: 1px solid rgba(1, 171, 196, 0.32);
-  content: "";
-  transform: rotate(45deg);
+  background: #dfeaed;
 }
 
 .blog-feature-symbol img {
-  position: relative;
-  z-index: 2;
-  width: 135px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.blog-feature-symbol:hover img {
+  transform: scale(1.025);
 }
 
 .blog-feature-copy {
@@ -1349,6 +1313,10 @@ svg {
   }
 
   .blog-feature-symbol {
+    min-height: 220px;
+  }
+
+  .blog-feature-symbol img {
     min-height: 220px;
   }
 
@@ -1858,23 +1826,8 @@ svg {
     min-height: 390px;
   }
 
-  .people-symbol::before {
-    top: 24px;
-    right: 24px;
-    width: 76px;
-    height: 5px;
-  }
-
-  .people-symbol::after {
-    bottom: 20px;
-    left: 24px;
-    width: auto;
-    height: auto;
-    font-size: 0.55rem;
-  }
-
   .people-symbol img {
-    width: 165px;
+    min-height: 390px;
   }
 
   .journey-timeline {
