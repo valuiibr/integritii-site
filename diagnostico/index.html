@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diagnóstico de Governança para Igrejas | Integritii</title>
-  <meta name="description" content="Avalie gratuitamente a maturidade da governança, transparência, integridade e sustentabilidade da sua igreja.">
+  <title>Diagnóstico de Transparência e Governança para Igrejas | Integritii</title>
+  <meta name="description" content="Avaliação gratuita, simples e acessível das práticas percebidas de transparência, integridade e governança da sua igreja.">
   <meta name="theme-color" content="#203850">
   <link rel="icon" type="image/png" href="../assets/images/favicon.png">
   <link rel="apple-touch-icon" href="../assets/images/favicon.png">
@@ -50,6 +50,7 @@
     .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),#6dd2e5);transition:width .3s}
     .dimension{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#277d96;font-weight:700}
     .question{font-size:clamp(22px,3vw,29px);font-weight:700;line-height:1.38;letter-spacing:-.018em;margin:13px 0 24px;max-width:900px}
+    .quiz-guidance{margin:-9px 0 21px;padding:13px 15px;border-left:4px solid var(--cyan);background:#f0f8fa;color:var(--muted);font-size:12px;line-height:1.55}
     .options{display:grid;gap:10px}
     .option{width:100%;text-align:left;border:1px solid var(--line);padding:15px 17px;border-radius:12px;cursor:pointer;transition:.15s;background:#fff;color:var(--ink);display:flex;gap:13px;align-items:center}
     .option:hover,.option.active{border-color:var(--cyan);background:#eefafb}
@@ -72,6 +73,7 @@
     .ringtext{z-index:1;text-align:center}.ringtext strong{font-size:50px;color:var(--navy)}.ringtext span{display:block;font-size:11px;color:var(--muted)}
     .level{font-size:30px;color:var(--navy);margin:0 0 8px}
     .summary{color:var(--muted);line-height:1.68;margin:0 0 22px}
+    .visibility-note{margin:0 0 20px;padding:13px 15px;border-radius:10px;background:#edf6f8;color:#496574;font-size:12px;line-height:1.55}
     .bars{display:grid;gap:13px}
     .barhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600}
     .track{height:9px;background:#e5edef;border-radius:99px;overflow:hidden;margin-top:6px}.fill{height:100%;background:linear-gradient(90deg,#2d8ca5,var(--cyan));border-radius:99px}
@@ -94,7 +96,7 @@
   <header>
     <a class="brand" href="https://www.integritii.com.br" aria-label="Integritii — página inicial">
       <img src="../assets/images/logo-integritii-azul.png" alt="Integritii">
-      <span class="product">Diagnóstico de Governança</span>
+      <span class="product">Diagnóstico Integritii</span>
     </a>
     <a class="back" href="https://www.integritii.com.br">Voltar ao site</a>
   </header>
@@ -102,8 +104,8 @@
   <main class="shell">
     <section id="intro" class="hero">
       <div class="eyebrow">Autodiagnóstico preliminar gratuito</div>
-      <h1>Como está a governança da sua igreja?</h1>
-      <p>Responda a uma avaliação objetiva e conheça o nível de maturidade da sua igreja em liderança, transparência, integridade, finanças, riscos e sustentabilidade da missão.</p>
+      <h1>Como sua igreja pratica transparência, integridade e boa governança?</h1>
+      <p>Uma avaliação objetiva e com linguagem simples, que pode ser respondida por pastores, dirigentes, profissionais, voluntários e membros da igreja.</p>
       <div class="badges">
         <span class="badge">6 dimensões</span><span class="badge">24 questões</span><span class="badge">Resultado personalizado</span><span class="badge">Plano inicial de prioridades</span>
       </div>
@@ -111,7 +113,7 @@
     </section>
 
     <section id="trust" class="trust" aria-label="Características do diagnóstico">
-      <div class="trust-item"><div class="trust-icon">01</div><div><b>Preenchimento orientado</b><span>Escala simples, com respostas que refletem o estágio real das práticas.</span></div></div>
+      <div class="trust-item"><div class="trust-icon">01</div><div><b>Linguagem para todos</b><span>Perguntas diretas sobre situações que podem ser observadas ou conhecidas na igreja.</span></div></div>
       <div class="trust-item"><div class="trust-icon">02</div><div><b>Leitura por dimensão</b><span>Nota geral e visão separada das áreas que sustentam a boa governança.</span></div></div>
       <div class="trust-item"><div class="trust-icon">03</div><div><b>Uso responsável</b><span>Ferramenta educativa; não substitui auditoria, certificação ou parecer técnico.</span></div></div>
     </section>
@@ -121,6 +123,7 @@
       <div class="progress" aria-hidden="true"><span id="prog"></span></div>
       <div id="dimension" class="dimension"></div>
       <div id="question" class="question"></div>
+      <p class="quiz-guidance">Responda com base no que você conhece ou consegue observar. Se a informação não é divulgada ou você não tem acesso, selecione “Não sei ou não tenho acesso”.</p>
       <div id="options" class="options" role="radiogroup" aria-label="Opções de resposta"></div>
       <div class="nav"><button class="btn secondary" type="button" onclick="previousQuestion()">← Voltar</button><button id="next" class="btn" type="button" onclick="nextQuestion()">Continuar →</button></div>
     </section>
@@ -134,8 +137,9 @@
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
       <input type="hidden" id="submittedAt" name="Data e hora" value="">
       <input type="hidden" id="submittedScore" name="Índice geral" value="">
-      <input type="hidden" id="submittedLevel" name="Nível de maturidade" value="">
+      <input type="hidden" id="submittedLevel" name="Classificação do resultado" value="">
       <input type="hidden" id="submittedDimensions" name="Resultados por dimensão" value="">
+      <input type="hidden" id="submittedUnknown" name="Respostas sem acesso à informação" value="">
       <div class="gate-intro">
         <div class="dimension">Seu resultado foi calculado</div>
         <h2>Identifique sua igreja para acessar a análise completa</h2>
@@ -144,7 +148,7 @@
       <div class="formgrid">
         <div class="field"><label for="name">Nome *</label><input id="name" name="Nome" autocomplete="name" required></div>
         <div class="field"><label for="church">Igreja ou organização religiosa *</label><input id="church" name="Igreja" autocomplete="organization" required></div>
-        <div class="field"><label for="role">Função ou responsabilidade *</label><select id="role" name="Função" required><option value="">Selecione</option><option>Pastor(a) ou líder principal</option><option>Membro da diretoria</option><option>Conselheiro(a)</option><option>Tesoureiro(a) ou responsável financeiro</option><option>Líder de ministério</option><option>Contador(a), auditor(a) ou assessor(a)</option><option>Outro</option></select></div>
+        <div class="field"><label for="role">Relação com a igreja *</label><select id="role" name="Função" required><option value="">Selecione</option><option>Pastor(a) ou líder principal</option><option>Membro da diretoria</option><option>Conselheiro(a)</option><option>Tesoureiro(a) ou responsável financeiro</option><option>Líder de ministério</option><option>Contador(a), auditor(a) ou assessor(a)</option><option>Voluntário(a)</option><option>Membro ou frequentador(a)</option><option>Outro</option></select></div>
         <div class="field"><label for="phone">WhatsApp *</label><input id="phone" name="WhatsApp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
         <div class="field"><label for="email">E-mail *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="city">Cidade e estado *</label><input id="city" name="Cidade e estado" placeholder="Ex.: Piracicaba/SP" required></div>
@@ -157,18 +161,18 @@
 
     <section id="result" class="hidden">
       <div class="card result-hero">
-        <div class="dimension">Índice Integritii de Maturidade em Governança Eclesiástica</div>
+        <div class="dimension">Índice Integritii de Transparência, Integridade e Governança Percebidas</div>
         <h2 id="hello" class="result-title"></h2>
         <div class="scoregrid">
           <div class="ring" id="ring"><div class="ringtext"><strong id="score"></strong><span>de 100 pontos</span></div></div>
-          <div><h3 id="level" class="level"></h3><p id="summary" class="summary"></p><div id="bars" class="bars"></div></div>
+          <div><h3 id="level" class="level"></h3><p id="summary" class="summary"></p><p id="visibilityNote" class="visibility-note"></p><div id="bars" class="bars"></div></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="dimension">Leitura executiva</div><h2>O que o resultado indica</h2>
+        <div class="dimension">Leitura do resultado</div><h2>O que suas respostas indicam</h2>
         <div class="insights">
-          <div class="insight"><div class="tag">Maior maturidade</div><b id="strongTitle"></b><span id="strong"></span></div>
+          <div class="insight"><div class="tag">Prática mais percebida</div><b id="strongTitle"></b><span id="strong"></span></div>
           <div class="insight"><div class="tag">Ponto de atenção</div><b id="weakTitle"></b><span id="weak"></span></div>
           <div class="insight"><div class="tag">Próximo passo</div><b>Plano de evolução</b><span id="priority"></span></div>
         </div>
@@ -191,7 +195,7 @@
         <button class="btn ghost" style="margin-left:8px" type="button" onclick="window.print()">Salvar resultado em PDF</button>
       </div>
 
-      <p class="notice">O Índice Integritii de Maturidade em Governança Eclesiástica é um instrumento educativo de autodiagnóstico, calculado exclusivamente a partir das respostas do participante. Não representa auditoria, asseguração, certificação, acreditação, selo de conformidade ou parecer jurídico, contábil ou financeiro. A ausência de determinada prática não implica, isoladamente, irregularidade legal.</p>
+      <p class="notice">O Índice Integritii de Transparência, Integridade e Governança Percebidas é um instrumento educativo calculado exclusivamente a partir do conhecimento e da percepção do participante. Uma resposta “Não sei ou não tenho acesso” pode indicar falta de comunicação ou de acesso à informação, mas não comprova que a prática inexiste. O diagnóstico não representa auditoria, asseguração, certificação, acreditação, selo de conformidade ou parecer jurídico, contábil ou financeiro.</p>
     </section>
   </main>
 
@@ -208,47 +212,46 @@
     };
 
     const questions=[
-      ["Liderança e Responsabilidades","As atribuições da liderança pastoral, diretoria, conselhos e demais responsáveis estão formalmente definidas?"],
-      ["Liderança e Responsabilidades","Decisões relevantes são submetidas às instâncias competentes, registradas e acompanhadas?"],
-      ["Liderança e Responsabilidades","Existem critérios claros para nomeação, mandato, substituição e avaliação de dirigentes e responsáveis?"],
-      ["Liderança e Responsabilidades","A liderança recebe informações confiáveis e periódicas para exercer supervisão e tomar decisões?"],
-      ["Transparência e Prestação de Contas","A igreja apresenta periodicamente receitas, despesas, patrimônio e aplicação dos recursos aos responsáveis e membros?"],
-      ["Transparência e Prestação de Contas","Relatórios financeiros e ministeriais são compreensíveis, consistentes e acessíveis às instâncias adequadas?"],
-      ["Transparência e Prestação de Contas","Projetos, campanhas e ofertas com finalidade específica possuem acompanhamento e prestação de contas próprios?"],
-      ["Transparência e Prestação de Contas","A igreja comunica resultados, atividades e impacto da missão de forma objetiva e verificável?"],
-      ["Integridade, Ética e Conformidade","A igreja possui diretrizes de ética e conduta aplicáveis a líderes, empregados, voluntários e fornecedores?"],
-      ["Integridade, Ética e Conformidade","Conflitos de interesses, transações com partes relacionadas e benefícios a dirigentes são declarados e tratados?"],
-      ["Integridade, Ética e Conformidade","Existe um meio seguro e responsável para relatar dúvidas, desvios, abusos ou irregularidades?"],
-      ["Integridade, Ética e Conformidade","Obrigações estatutárias, trabalhistas, fiscais, contábeis e de proteção de dados são acompanhadas com responsáveis definidos?"],
-      ["Gestão Financeira e Controles","Orçamento, fluxo de caixa e posição financeira são preparados e comparados regularmente com o realizado?"],
-      ["Gestão Financeira e Controles","Pagamentos, recebimentos, conciliações e movimentações bancárias seguem procedimentos e aprovações definidos?"],
-      ["Gestão Financeira e Controles","Funções incompatíveis estão segregadas e atividades críticas passam por revisão independente?"],
-      ["Gestão Financeira e Controles","Demonstrações contábeis e relatórios financeiros são revisados pelas instâncias de supervisão e, quando aplicável, por profissional independente?"],
-      ["Riscos, Continuidade e Proteção","Os principais riscos financeiros, operacionais, legais, reputacionais e ministeriais são identificados e acompanhados?"],
-      ["Riscos, Continuidade e Proteção","Existem planos para continuidade das atividades, sucessão da liderança e resposta a situações de crise?"],
-      ["Riscos, Continuidade e Proteção","A igreja adota medidas de proteção de crianças, adolescentes e pessoas vulneráveis em suas atividades?"],
-      ["Riscos, Continuidade e Proteção","Documentos, dados, patrimônio e acessos digitais possuem proteção, responsáveis e rotinas de contingência?"],
-      ["Missão, Planejamento e Sustentabilidade","A igreja possui missão, prioridades e objetivos ministeriais claramente definidos e comunicados?"],
-      ["Missão, Planejamento e Sustentabilidade","O planejamento integra atividades ministeriais, capacidade financeira, pessoas e infraestrutura disponíveis?"],
-      ["Missão, Planejamento e Sustentabilidade","Indicadores financeiros e ministeriais são utilizados para acompanhar resultados e ajustar decisões?"],
-      ["Missão, Planejamento e Sustentabilidade","A captação, as reservas e o uso de recursos são conduzidos de modo a preservar a continuidade e a fidelidade à missão?" ]
+      ["Liderança e Responsabilidades","A igreja informa claramente quem são os responsáveis pelas decisões administrativas e financeiras?"],
+      ["Liderança e Responsabilidades","As funções do pastor, da diretoria, do conselho e da tesouraria são explicadas aos membros?"],
+      ["Liderança e Responsabilidades","As decisões importantes são registradas e comunicadas às pessoas interessadas?"],
+      ["Liderança e Responsabilidades","Existem regras conhecidas para escolha, mandato e substituição dos dirigentes?"],
+      ["Transparência e Prestação de Contas","Nos últimos 12 meses, a igreja apresentou aos membros um relatório claro de receitas e despesas?"],
+      ["Transparência e Prestação de Contas","Os membros conseguem acessar ou solicitar as demonstrações financeiras ou contábeis da igreja?"],
+      ["Transparência e Prestação de Contas","Campanhas, projetos e ofertas para finalidades específicas recebem uma prestação de contas própria?"],
+      ["Transparência e Prestação de Contas","A igreja divulga suas atividades, projetos e resultados sociais ou ministeriais?"],
+      ["Integridade, Ética e Conformidade","Existem orientações de ética e comportamento para líderes, empregados e voluntários?"],
+      ["Integridade, Ética e Conformidade","Há regras para impedir que líderes decidam sozinhos assuntos que possam beneficiar a si mesmos ou seus familiares?"],
+      ["Integridade, Ética e Conformidade","Existe um meio seguro para comunicar dúvidas, abusos, desvios ou irregularidades?"],
+      ["Integridade, Ética e Conformidade","A igreja informa quem é responsável por acompanhar suas obrigações legais, contábeis, trabalhistas e de proteção de dados?"],
+      ["Gestão Financeira e Controles","A igreja prepara um orçamento anual e acompanha se os gastos estão de acordo com o planejado?"],
+      ["Gestão Financeira e Controles","Mais de uma pessoa participa da autorização e da conferência de pagamentos importantes?"],
+      ["Gestão Financeira e Controles","As entradas, saídas e contas bancárias são conferidas regularmente com os registros da igreja?"],
+      ["Gestão Financeira e Controles","As demonstrações contábeis são preparadas por profissional habilitado e revisadas pela diretoria ou pelo conselho?"],
+      ["Riscos, Continuidade e Proteção","A igreja identifica situações que podem causar prejuízos financeiros, legais, operacionais ou à sua reputação?"],
+      ["Riscos, Continuidade e Proteção","Existe um plano para manter as atividades em casos de crise, emergência ou mudança inesperada de liderança?"],
+      ["Riscos, Continuidade e Proteção","Existem regras conhecidas para proteger crianças, adolescentes e pessoas vulneráveis?"],
+      ["Riscos, Continuidade e Proteção","Documentos, dados pessoais, senhas, contas digitais e patrimônio possuem acesso controlado?"],
+      ["Missão, Planejamento e Sustentabilidade","A missão, as prioridades e os objetivos da igreja são conhecidos pelos membros?"],
+      ["Missão, Planejamento e Sustentabilidade","A igreja planeja suas atividades considerando os recursos financeiros, as pessoas e a estrutura disponíveis?"],
+      ["Missão, Planejamento e Sustentabilidade","A liderança acompanha se os projetos e ministérios estão alcançando os resultados esperados?"],
+      ["Missão, Planejamento e Sustentabilidade","A igreja mantém planejamento financeiro ou reservas para enfrentar imprevistos e preservar suas atividades?" ]
     ];
 
-    const labels=[
-      "Não existe ou não é realizado",
-      "Existe de maneira informal ou incipiente",
-      "É realizado parcialmente ou sem regularidade",
-      "Está implementado e é realizado periodicamente",
-      "Está implementado, monitorado e orienta decisões"
+    const answerOptions=[
+      {label:"Sim, isso acontece",symbol:"✓",score:4},
+      {label:"Acontece em parte ou sem regularidade",symbol:"◐",score:2},
+      {label:"Não acontece",symbol:"×",score:0},
+      {label:"Não sei ou não tenho acesso",symbol:"?",score:0,unknown:true}
     ];
 
     const recommendations={
-      "Liderança e Responsabilidades":"Formalizar atribuições, alçadas, reuniões e registros de decisão da liderança e dos órgãos de supervisão.",
-      "Transparência e Prestação de Contas":"Estabelecer uma rotina clara de relatórios financeiros, ministeriais e prestações de contas aos públicos adequados.",
-      "Integridade, Ética e Conformidade":"Implantar diretrizes de conduta, conflitos de interesses, canal de relato e calendário de obrigações.",
-      "Gestão Financeira e Controles":"Organizar orçamento, fluxo de caixa, conciliações, aprovações, segregação de funções e revisão dos relatórios.",
-      "Riscos, Continuidade e Proteção":"Mapear riscos prioritários e instituir planos de continuidade, proteção de vulneráveis, dados e patrimônio.",
-      "Missão, Planejamento e Sustentabilidade":"Conectar missão, planejamento, indicadores, recursos e reservas em um ciclo periódico de gestão."
+      "Liderança e Responsabilidades":"Definir e comunicar quem decide, quem aprova, quais são as responsabilidades e como as decisões importantes são registradas.",
+      "Transparência e Prestação de Contas":"Criar uma rotina de relatórios financeiros e ministeriais claros, com acesso adequado para membros e responsáveis.",
+      "Integridade, Ética e Conformidade":"Estabelecer orientações de conduta, regras para conflitos de interesses, um canal seguro de relato e responsáveis pelas obrigações da igreja.",
+      "Gestão Financeira e Controles":"Organizar orçamento, aprovações, conferências bancárias e revisão das informações contábeis por pessoas responsáveis.",
+      "Riscos, Continuidade e Proteção":"Identificar os principais riscos e criar medidas para crises, proteção de pessoas vulneráveis, dados, documentos e patrimônio.",
+      "Missão, Planejamento e Sustentabilidade":"Relacionar missão, objetivos, atividades, recursos, resultados e reservas em um planejamento periódico."
     };
 
     let current=0;
@@ -271,7 +274,7 @@
       $("prog").style.width=`${percent}%`;
       $("dimension").textContent=questions[current][0];
       $("question").textContent=questions[current][1];
-      $("options").innerHTML=labels.map((label,index)=>`<button type="button" role="radio" aria-checked="${answers[current]===index}" class="option ${answers[current]===index?'active':''}" onclick="chooseAnswer(${index})"><span class="option-number">${index}</span><span>${label}</span></button>`).join("");
+      $("options").innerHTML=answerOptions.map((option,index)=>`<button type="button" role="radio" aria-checked="${answers[current]===index}" class="option ${answers[current]===index?'active':''}" onclick="chooseAnswer(${index})"><span class="option-number">${option.symbol}</span><span>${option.label}</span></button>`).join("");
       $("next").textContent=current===questions.length-1?"Concluir diagnóstico →":"Continuar →";
     }
 
@@ -289,20 +292,21 @@
       const scores={};
       Object.keys(dimensions).forEach(dimension=>{
         const indexes=questions.map((item,index)=>item[0]===dimension?index:-1).filter(index=>index>=0);
-        scores[dimension]=Math.round(indexes.reduce((sum,index)=>sum+answers[index],0)/(indexes.length*4)*100);
+        scores[dimension]=Math.round(indexes.reduce((sum,index)=>sum+answerOptions[answers[index]].score,0)/(indexes.length*4)*100);
       });
       const total=Math.round(Object.entries(scores).reduce((sum,[dimension,value])=>sum+value*dimensions[dimension]/100,0));
-      return [total,scores];
+      const unknownCount=answers.filter(answer=>answerOptions[answer].unknown).length;
+      return [total,scores,unknownCount];
     }
 
     function validEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
 
     function maturity(score){
-      if(score<=20)return ["Governança vulnerável","Há baixa formalização em práticas essenciais. A prioridade é criar fundamentos mínimos de responsabilidade, controle e prestação de contas para reduzir exposição da igreja e de sua liderança."];
-      if(score<=40)return ["Governança inicial","A igreja possui algumas práticas, mas elas ainda dependem de pessoas, costumes e rotinas informais. É necessário transformar boas intenções em procedimentos consistentes."];
-      if(score<=60)return ["Governança em estruturação","Já existem mecanismos relevantes, porém com lacunas de integração, regularidade, documentação e monitoramento. Um plano de evolução pode consolidar o sistema de governança."];
-      if(score<=80)return ["Governança estruturada","A igreja demonstra boas práticas em diferentes áreas. O avanço depende de aperfeiçoar supervisão, indicadores, transparência e melhoria contínua."];
-      return ["Governança madura","A igreja demonstra práticas consistentes, monitoradas e integradas à missão. O foco passa a ser preservar a cultura de integridade, avaliar efetividade e compartilhar aprendizados."];
+      if(score<=20)return ["Práticas pouco visíveis","As respostas indicam baixa percepção de práticas essenciais de transparência, integridade e organização. Isso pode refletir práticas ainda não adotadas ou informações pouco acessíveis."];
+      if(score<=40)return ["Práticas iniciais","Algumas condutas são percebidas, mas ainda existem lacunas importantes de execução, regularidade ou comunicação com os membros."];
+      if(score<=60)return ["Práticas em desenvolvimento","A igreja demonstra iniciativas relevantes, porém ainda há oportunidades para tornar as rotinas mais consistentes, conhecidas e acessíveis."];
+      if(score<=80)return ["Práticas consistentes","As respostas indicam boa presença de transparência, integridade e organização. O próximo passo é ampliar a regularidade, a documentação e o acesso às informações."];
+      return ["Práticas amplamente percebidas","As respostas indicam práticas consistentes e visíveis. O foco deve ser preservar a cultura de integridade, verificar a efetividade e promover melhoria contínua."];
     }
 
     function unlockResult(){
@@ -312,27 +316,31 @@
         $("formerror").textContent="Preencha os campos obrigatórios, informe um e-mail válido e confirme o consentimento para prosseguir.";return;
       }
       $("formerror").textContent="";
-      const [score,scores]=calculate();
+      const [score,scores,unknownCount]=calculate();
       const [level]=maturity(score);
-      const record={createdAt:new Date().toISOString(),name:$("name").value.trim(),church:$("church").value.trim(),role:$("role").value,phone:$("phone").value.trim(),email:$("email").value.trim(),city:$("city").value.trim(),site:$("site").value.trim(),score,level,scores};
-      try{localStorage.setItem("integritii-diagnostico-atual",JSON.stringify(record))}catch(error){}
+      const record={createdAt:new Date().toISOString(),name:$("name").value.trim(),church:$("church").value.trim(),role:$("role").value,phone:$("phone").value.trim(),email:$("email").value.trim(),city:$("city").value.trim(),site:$("site").value.trim(),score,level,scores,unknownCount};
+      try{localStorage.setItem("integritii-diagnostico-unificado-v2",JSON.stringify(record))}catch(error){}
       $("submittedAt").value=new Date().toLocaleString("pt-BR");
       $("submittedScore").value=`${score}/100`;
       $("submittedLevel").value=level;
       $("submittedDimensions").value=Object.entries(scores).map(([dimension,value])=>`${dimension}: ${value}/100`).join(" | ");
+      $("submittedUnknown").value=`${unknownCount} de ${questions.length}`;
       $("autoresponse").value=`Olá, ${record.name}. Recebemos o Diagnóstico Integritii de ${record.church}. O resultado geral foi ${score}/100 — ${level}. Acesse novamente seu resultado neste dispositivo em http://www.integritii.com.br/diagnostico/?resultado=1 e baixe gratuitamente o Guia Inicial de Governança para Igrejas em http://www.integritii.com.br/assets/downloads/Kit_Inicial_Integritii_para_Igrejas.pdf. Esta é uma avaliação preliminar baseada nas respostas informadas e não constitui auditoria ou certificação. Integritii — integridade que protege a missão.`;
       $("submitResult").disabled=true;
       $("submitResult").textContent="Enviando resultado…";
       $("gate").submit();
     }
 
-    function showResult(score,scores){
+    function showResult(score,scores,unknownCount=0){
       $("score").textContent=score;
       $("ring").style.setProperty("--score",score);
       $("hello").textContent=`${$("name").value}, este é o resultado de ${$("church").value}.`;
       const [level,summary]=maturity(score);
       $("level").textContent=level;
       $("summary").textContent=summary;
+      $("visibilityNote").textContent=unknownCount===0
+        ?"Você informou conhecer todas as práticas avaliadas."
+        :`Em ${unknownCount} de ${questions.length} questões, você indicou não saber ou não ter acesso à informação. Isso reduz a percepção de transparência, mas não comprova que essas práticas inexistem.`;
       $("bars").innerHTML=Object.entries(scores).map(([dimension,value])=>`<div><div class="barhead"><span>${dimension}</span><span>${value}/100</span></div><div class="track"><div class="fill" style="width:${value}%"></div></div></div>`).join("");
       const ordered=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
       const strongest=ordered[0];
@@ -349,11 +357,11 @@
     function restoreSubmittedResult(){
       if(!new URLSearchParams(window.location.search).has("resultado"))return;
       let record;
-      try{record=JSON.parse(localStorage.getItem("integritii-diagnostico-atual")||"null")}catch(error){record=null}
+      try{record=JSON.parse(localStorage.getItem("integritii-diagnostico-unificado-v2")||"null")}catch(error){record=null}
       if(!record)return;
       ["name","church","role","phone","email","city","site"].forEach(id=>{if($(id)&&record[id]!==undefined)$(id).value=record[id]});
       $("intro").classList.add("hidden");$("trust").classList.add("hidden");$("quiz").classList.add("hidden");$("gate").classList.add("hidden");$("result").classList.remove("hidden");
-      showResult(record.score,record.scores);
+      showResult(record.score,record.scores,record.unknownCount||0);
     }
 
     document.addEventListener("DOMContentLoaded",restoreSubmittedResult);
