@@ -76,8 +76,9 @@
     .summary{color:var(--muted);line-height:1.68;margin:0 0 22px}
     .visibility-note{margin:0 0 20px;padding:13px 15px;border-radius:10px;background:#edf6f8;color:#496574;font-size:12px;line-height:1.55}
     .bars{display:grid;gap:13px}
-    .barhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600}
+    .barhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600}.barhead span:last-child{text-align:right;color:#2d8ca5}
     .track{height:9px;background:#e5edef;border-radius:99px;overflow:hidden;margin-top:6px}.fill{height:100%;background:linear-gradient(90deg,#2d8ca5,var(--cyan));border-radius:99px}
+    .radar-card{display:grid;grid-template-columns:.72fr 1.28fr;gap:28px;align-items:center}.radar-copy p{color:var(--muted);line-height:1.65}.radar-box{min-height:420px;display:grid;place-items:center;overflow:hidden}.radar-box svg{width:100%;max-width:560px;height:auto}.radar-grid{fill:none;stroke:#cfdee4;stroke-width:1}.radar-axis{stroke:#dce7eb;stroke-width:1}.radar-area{fill:#3db6d638;stroke:var(--cyan);stroke-width:3}.radar-dot{fill:var(--navy);stroke:white;stroke-width:2}.radar-label{fill:#405467;font-size:12px;font-weight:700}.radar-value{fill:#2d8ca5;font-size:11px;font-weight:800}.maturity-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px}.maturity-step{padding:17px 13px;border:1px solid var(--line);border-radius:12px;background:#f8fbfc}.maturity-step.active{color:white;background:linear-gradient(145deg,var(--navy),#2d6e82);border-color:transparent;box-shadow:0 10px 24px #20385022}.maturity-step small,.maturity-step strong,.maturity-step span{display:block}.maturity-step small{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#2d8ca5;font-weight:800}.maturity-step.active small{color:#8fe5f4}.maturity-step strong{font-size:13px;margin:7px 0 5px}.maturity-step span{font-size:10.5px;line-height:1.42;color:var(--muted)}.maturity-step.active span{color:#e1f2f5}.method-copy{color:var(--muted);line-height:1.65}
     .insights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .insight{padding:20px;border-radius:15px;background:var(--ice);border:1px solid #dfebee}
     .insight .tag{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#34798d;font-weight:700}.insight b{display:block;margin:8px 0;color:var(--navy);font-size:14px}.insight span{font-size:12px;line-height:1.55;color:var(--muted)}
@@ -88,7 +89,7 @@
     .guide{background:var(--navy);color:#fff;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.guide h2{margin:9px 0 10px;font-size:27px}.guide p{color:#d9e8ed;line-height:1.65;font-size:13px;margin:0}
     .notice{font-size:11px;color:#788895;line-height:1.6;margin:22px 4px 0}
     footer{background:var(--navy2);color:#c9d8df;padding:36px 5%;display:flex;justify-content:center;text-align:center;font-size:11px;line-height:1.6}
-    @media(max-width:780px){header{padding:11px 18px}.brand img{width:130px}.product{display:none}.back{font-size:11px}.shell{padding:25px 15px 44px}.hero{padding:40px 24px;border-radius:20px}.hero p{font-size:15px}.trust,.formgrid,.scoregrid,.insights{grid-template-columns:1fr}.trust{gap:10px}.card{padding:24px 19px;border-radius:18px}.ring{margin:auto}.nav .btn{padding:13px 15px}.guide{grid-template-columns:1fr}.formgrid .full{grid-column:auto!important}}
+    @media(max-width:860px){.radar-card{grid-template-columns:1fr}.maturity-scale{grid-template-columns:1fr 1fr}.radar-box{min-height:350px}}@media(max-width:780px){header{padding:11px 18px}.brand img{width:130px}.product{display:none}.back{font-size:11px}.shell{padding:25px 15px 44px}.hero{padding:40px 24px;border-radius:20px}.hero p{font-size:15px}.trust,.formgrid,.scoregrid,.insights{grid-template-columns:1fr}.trust{gap:10px}.card{padding:24px 19px;border-radius:18px}.ring{margin:auto}.nav .btn{padding:13px 15px}.guide{grid-template-columns:1fr}.formgrid .full{grid-column:auto!important}.maturity-scale{grid-template-columns:1fr}.radar-box{min-height:310px}.barhead{font-size:11px}}
     @media print{header,.topbar,.hero,.trust,.nav,.guide,.cta-card,footer{display:none!important}.shell{padding:0}.card{box-shadow:none;break-inside:avoid}.result-title{font-size:28px}}
   </style>
 </head>
@@ -170,6 +171,8 @@
         </div>
       </div>
 
+      <div class="card radar-card"><div class="radar-copy"><div class="dimension">Mapa de maturidade percebida</div><h2>Visão integrada dos seis eixos</h2><p>O gráfico radar evidencia o equilíbrio entre liderança, transparência, integridade, finanças, proteção e sustentabilidade da missão. O resultado representa a percepção informada pelo participante.</p></div><div id="radar" class="radar-box" role="img" aria-label="Gráfico radar da maturidade percebida da governança da igreja"></div></div>
+
       <div class="card">
         <div class="dimension">Leitura do resultado</div><h2>O que suas respostas indicam</h2>
         <div class="insights">
@@ -183,6 +186,8 @@
         <div class="dimension">Plano inicial</div><h2>Três prioridades recomendadas</h2>
         <div id="actions" class="action-list"></div>
       </div>
+
+      <div class="card"><div class="dimension">Jornada Integritii</div><h2>Trilha recomendada de evolução</h2><p class="method-copy">O nível percebido orienta a jornada: alinhar responsabilidades, diagnosticar lacunas, implementar fundamentos, consolidar práticas ou aprender e melhorar continuamente.</p><div id="maturityPath" class="maturity-scale"></div></div>
 
       <div class="card guide">
         <div><div class="eyebrow">Conteúdo Integritii</div><h2>Guia Inicial de Governança para Igrejas</h2><p>Material prático com fundamentos de liderança responsável, transparência, integridade, controles, prestação de contas e proteção da missão.</p></div>
@@ -302,13 +307,16 @@
 
     function validEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
 
-    function maturity(score){
-      if(score<=20)return ["Práticas pouco visíveis","As respostas indicam baixa percepção de práticas essenciais de transparência, integridade e organização. Isso pode refletir práticas ainda não adotadas ou informações pouco acessíveis."];
-      if(score<=40)return ["Práticas iniciais","Algumas condutas são percebidas, mas ainda existem lacunas importantes de execução, regularidade ou comunicação com os membros."];
-      if(score<=60)return ["Práticas em desenvolvimento","A igreja demonstra iniciativas relevantes, porém ainda há oportunidades para tornar as rotinas mais consistentes, conhecidas e acessíveis."];
-      if(score<=80)return ["Práticas consistentes","As respostas indicam boa presença de transparência, integridade e organização. O próximo passo é ampliar a regularidade, a documentação e o acesso às informações."];
-      return ["Práticas amplamente percebidas","As respostas indicam práticas consistentes e visíveis. O foco deve ser preservar a cultura de integridade, verificar a efetividade e promover melhoria contínua."];
+    function integritiiMaturity(score){
+      if(score<=20)return{name:"Práticas pouco visíveis",short:"Pouco visíveis",stage:"Alinhar",range:"0–20",summary:"As respostas indicam baixa percepção de práticas essenciais de transparência, integridade e organização. Isso pode refletir práticas ainda não adotadas ou informações pouco acessíveis.",action:"Alinhar responsabilidades, acesso à informação e fundamentos mínimos de proteção."};
+      if(score<=40)return{name:"Práticas iniciais",short:"Iniciais",stage:"Diagnosticar",range:"21–40",summary:"Algumas condutas são percebidas, mas ainda existem lacunas importantes de execução, regularidade ou comunicação com os membros.",action:"Diagnosticar lacunas, riscos e prioridades de governança."};
+      if(score<=60)return{name:"Práticas em desenvolvimento",short:"Em desenvolvimento",stage:"Implementar",range:"41–60",summary:"A igreja demonstra iniciativas relevantes, porém ainda há oportunidades para tornar as rotinas mais consistentes, conhecidas e acessíveis.",action:"Implementar políticas, controles, rotinas e evidências proporcionais."};
+      if(score<=80)return{name:"Práticas consistentes",short:"Consistentes",stage:"Consolidar",range:"61–80",summary:"As respostas indicam boa presença de transparência, integridade e organização. O próximo passo é ampliar a regularidade, a documentação e o acesso às informações.",action:"Consolidar práticas, ampliar visibilidade e acompanhar efetividade."};
+      return{name:"Práticas amplamente percebidas",short:"Amplamente percebidas",stage:"Aprender e melhorar",range:"81–100",summary:"As respostas indicam práticas consistentes e visíveis. O foco deve ser preservar a cultura de integridade, verificar a efetividade e promover melhoria contínua.",action:"Aprender, revisar a efetividade e promover melhoria contínua."};
     }
+    function maturity(score){const m=integritiiMaturity(score);return[m.name,m.summary]}
+    function renderIntegritiiPath(score){const levels=[{range:"0–20",stage:"Alinhar",name:"Pouco visíveis",action:"Responsabilidades e fundamentos"},{range:"21–40",stage:"Diagnosticar",name:"Iniciais",action:"Lacunas, riscos e prioridades"},{range:"41–60",stage:"Implementar",name:"Em desenvolvimento",action:"Práticas, controles e evidências"},{range:"61–80",stage:"Consolidar",name:"Consistentes",action:"Regularidade e efetividade"},{range:"81–100",stage:"Aprender",name:"Amplamente percebidas",action:"Cultura e melhoria contínua"}];const active=score<=20?0:score<=40?1:score<=60?2:score<=80?3:4;$("maturityPath").innerHTML=levels.map((x,n)=>`<div class="maturity-step ${n===active?"active":""}"><small>${x.range} · ${x.stage}</small><strong>${x.name}</strong><span>${x.action}</span></div>`).join("")}
+    function renderIntegritiiRadar(scores){const entries=Object.entries(scores),names=["Liderança","Transparência","Integridade","Finanças e controles","Riscos e proteção","Missão e sustentabilidade"],size=600,c=300,r=185,count=entries.length;const point=(idx,value,extra=0)=>{const a=-Math.PI/2+Math.PI*2*idx/count,rr=r*(value/100)+extra;return[c+Math.cos(a)*rr,c+Math.sin(a)*rr]};const polygon=value=>entries.map((_,idx)=>point(idx,value)).map(p=>p.join(",")).join(" ");const grids=[20,40,60,80,100].map(v=>`<polygon class="radar-grid" points="${polygon(v)}"/>`).join("");const axes=entries.map((_,idx)=>{const p=point(idx,100);return`<line class="radar-axis" x1="${c}" y1="${c}" x2="${p[0]}" y2="${p[1]}"/>`}).join("");const area=entries.map(([_,v],idx)=>point(idx,v)).map(p=>p.join(",")).join(" ");const dots=entries.map(([_,v],idx)=>{const p=point(idx,v);return`<circle class="radar-dot" cx="${p[0]}" cy="${p[1]}" r="5"/>`}).join("");const labelsSvg=entries.map(([_,v],idx)=>{const p=point(idx,100,52),anchor=p[0]<c-20?"end":p[0]>c+20?"start":"middle",dy=p[1]<c-40?-6:p[1]>c+40?14:4;return`<text class="radar-label" x="${p[0]}" y="${p[1]+dy}" text-anchor="${anchor}">${names[idx]}</text><text class="radar-value" x="${p[0]}" y="${p[1]+dy+16}" text-anchor="${anchor}">${v}/100</text>`}).join("");$("radar").innerHTML=`<svg viewBox="0 0 ${size} ${size}" aria-hidden="true"><g>${grids}${axes}<polygon class="radar-area" points="${area}"/>${dots}${labelsSvg}</g></svg>`}
 
     function unlockResult(){
       const required=["name","church","role","phone","email","city"];
@@ -336,13 +344,13 @@
       $("score").textContent=score;
       $("ring").style.setProperty("--score",score);
       $("hello").textContent=`${$("name").value}, este é o resultado de ${$("church").value}.`;
-      const [level,summary]=maturity(score);
-      $("level").textContent=level;
-      $("summary").textContent=summary;
+      const profile=integritiiMaturity(score),level=profile.name,summary=profile.summary;
+      $("level").textContent=`${level} · ${profile.stage}`;
+      $("summary").textContent=`${summary} Próxima orientação da Jornada Integritii: ${profile.action}`;
       $("visibilityNote").textContent=unknownCount===0
         ?"Você informou conhecer todas as práticas avaliadas."
         :`Em ${unknownCount} de ${questions.length} questões, você indicou não saber ou não ter acesso à informação. Isso reduz a percepção de transparência, mas não comprova que essas práticas inexistem.`;
-      $("bars").innerHTML=Object.entries(scores).map(([dimension,value])=>`<div><div class="barhead"><span>${dimension}</span><span>${value}/100</span></div><div class="track"><div class="fill" style="width:${value}%"></div></div></div>`).join("");
+      $("bars").innerHTML=Object.entries(scores).map(([dimension,value])=>`<div><div class="barhead"><span>${dimension}</span><span>${value}/100 · ${integritiiMaturity(value).short}</span></div><div class="track"><div class="fill" style="width:${value}%"></div></div></div>`).join("");renderIntegritiiRadar(scores);renderIntegritiiPath(score);
       const ordered=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
       const strongest=ordered[0];
       const weakest=ordered[ordered.length-1];
