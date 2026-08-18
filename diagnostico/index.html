@@ -219,8 +219,11 @@
       <div class="card cta-card">
         <div class="dimension">Aprofundamento</div><h2>Quer transformar o diagnóstico em um plano de ação?</h2>
         <p class="summary">O Integritii pode apoiar a liderança na leitura das causas, riscos e prioridades, respeitando o porte, a tradição e a realidade institucional da igreja.</p>
-        <a class="btn" href="https://wa.me/5519920041267?text=Ol%C3%A1%2C%20conclu%C3%AD%20o%20Diagn%C3%B3stico%20Integritii%20e%20gostaria%20de%20conhecer%20os%20pr%C3%B3ximos%20passos." target="_blank" rel="noopener">Falar sobre o diagnóstico →</a>
-        <button class="btn ghost" style="margin-left:8px" type="button" onclick="window.print()">Salvar resultado em PDF</button>
+        <div class="result-actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+          <a class="btn" href="https://wa.me/5519920041267?text=Ol%C3%A1%2C%20conclu%C3%AD%20o%20Diagn%C3%B3stico%20Integritii%20e%20gostaria%20de%20conhecer%20os%20pr%C3%B3ximos%20passos." target="_blank" rel="noopener">Entrar em contato →</a>
+          <button class="btn ghost" type="button" onclick="window.print()">Baixar resultado em PDF</button>
+          <button class="btn ghost" type="button" onclick="startNewDiagnostic()">Começar novo diagnóstico</button>
+        </div>
       </div>
 
       <p class="notice">O Índice Integritii de Transparência, Integridade e Governança Percebidas é um instrumento educativo calculado exclusivamente a partir do conhecimento e da percepção do participante. Uma resposta “Não sei ou não tenho acesso” pode indicar falta de comunicação ou de acesso à informação, mas não comprova que a prática inexiste. O diagnóstico não representa auditoria, asseguração, certificação, acreditação, selo de conformidade ou parecer jurídico, contábil ou financeiro.</p>
@@ -383,6 +386,11 @@
       $("priority").textContent=`Defina responsáveis, prazo e evidências de execução para fortalecer ${weakest[0].toLowerCase()}.`;
       const priorities=ordered.slice(-3).reverse();
       $("actions").innerHTML=priorities.map(([dimension,value])=>`<div class="action"><b>${dimension} · ${value}/100</b><span>${recommendations[dimension]}</span></div>`).join("");
+    }
+
+    function startNewDiagnostic(){
+      try{localStorage.removeItem("integritii-diagnostico-unificado-v2")}catch(error){}
+      window.location.href=window.location.pathname;
     }
 
     function restoreSubmittedResult(){
